@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> res;
+        vector<int> row1 = {1};
+        vector<int> row2;
+        if (numRows == 0)
+        {
+            return res;
+        }
+        while (numRows > 0)
+        {
+            res.push_back(row1);
+            int col = row1.size() + 1;
+            for (int i = 0; i != col; ++i)
+            {
+                if (i == 0 || i == col - 1)
+                {
+                    row2.push_back(1);
+                }
+                else
+                {
+                    row2.push_back(row1[i-1] + row1[i]);
+                }
+            }
+            row1 = row2;
+            row2.clear();
+            numRows -= 1;
+        }
+        return res;
+        
+    }
+};
